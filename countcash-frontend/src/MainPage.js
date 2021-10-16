@@ -5,7 +5,7 @@ export class MainPage extends Component{
 
     render(){
         return(
-            <h1 className="h1 "> This is Main Page</h1>            
+            <h1 className="h1">Hello from Main Page.</h1>
         );                
     }
 }

@@ -10,10 +10,10 @@ import { Navigation } from './Navigation';
 
 function App() {
   return (
-    <BrowserRouter>   
-
+    
+    <BrowserRouter>
+    
     <Navigation/>
-
     <Switch>
       <Route path='/' component={SignIn} exact/>
       <Route path='/login' component={Login}/>
