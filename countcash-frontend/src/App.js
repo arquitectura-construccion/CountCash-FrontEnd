@@ -3,6 +3,7 @@ import './styles.css';
 
 import {SignIn} from './SignIn';
 import {Login} from './Login';
+import {MainPage} from './MainPage';
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { Navigation } from './Navigation';
@@ -16,6 +17,7 @@ function App() {
     <Switch>
       <Route path='/' component={SignIn} exact/>
       <Route path='/login' component={Login}/>
+      <Route path ='/mainpage' component={MainPage}/>
     </Switch>
     </BrowserRouter>
   );

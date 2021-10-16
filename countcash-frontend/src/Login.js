@@ -15,7 +15,7 @@ export class Login extends Component{
             <input id="floatingPassword" class="form-control" type="password" placeholder="Pasword" />
             <label for="floatingPassword">Password</label>
         </div>
-        <button class="w-75 btn btn-lg btn-outline-success" type="submit">Log in</button>
+        <a class="w-75 btn btn-lg btn-outline-success" type="submit" href="/mainpage">Log in</a>
     </form>
         );                
     }
