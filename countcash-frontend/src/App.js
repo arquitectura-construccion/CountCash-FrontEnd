@@ -6,18 +6,16 @@ import {Login} from './Login';
 import {MainPage} from './MainPage';
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import { Navigation } from './Navigation';
+import DynamicLayout from './DynamicLayout';
 
 function App() {
   return (
     
     <BrowserRouter>
-    
-    <Navigation/>
     <Switch>
-      <Route path='/' component={SignIn} exact/>
-      <Route path='/login' component={Login}/>
-      <Route path ='/mainpage' component={MainPage}/>
+      <DynamicLayout exact path='/' component={SignIn} layout="SIGNUP"/>
+      <DynamicLayout path='/login' component={Login} layout="LOGIN"/>
+      <DynamicLayout path ='/mainpage' component={MainPage} layout="MAIN"/>
     </Switch>
     </BrowserRouter>
   );
