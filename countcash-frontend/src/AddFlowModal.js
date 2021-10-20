@@ -4,10 +4,11 @@ import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
 export class AddFlowModal extends Component{
     constructor(props){
         super(props);
+        this.handleSubmit=this.handleSubmit.bind(this);
     }
     
     handleSubmit(event){
-        event.preventdefault();
+        event.preventDefault();
         fetch(process.env.REACT_APP_API+'flow',{
             method:'POST',
             header:{
@@ -39,7 +40,7 @@ export class AddFlowModal extends Component{
                 >
                     <Modal.Header clooseButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Add Flow
+                            Agregar flujo
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -47,14 +48,14 @@ export class AddFlowModal extends Component{
                             <Col sm={6}>
                                 <Form onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="FlowName">
-                                        <Form.Label>Flow Name</Form.Label>
+                                        <Form.Label>Descripcion</Form.Label>
                                         <Form.Control type="text" name="FlowName" required
                                         placerholder="FlowName"/>
                                     </Form.Group>
 
                                     <Form.Group>
                                         <Button variant="primary" type="submit">
-                                            Add Flow
+                                            Agregar
                                         </Button>
                                     </Form.Group>
                                 </Form>
@@ -63,7 +64,7 @@ export class AddFlowModal extends Component{
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="danger" onClick={this.props.onHide}>
-                            Cancel
+                            Cancelar
                         </Button>
                     </Modal.Footer>
                 </Modal>
