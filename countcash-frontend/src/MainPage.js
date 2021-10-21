@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { Button, Table } from 'react-bootstrap';
+import { AddFlowModal } from './AddFlowModal';
 import './styles.css';
 
 export class MainPage extends Component{
 
     constructor(props){
         super(props);
-        this.state = {flows:[]}
+        this.state = {flows:[], addModalShow:false}
     }
 
     refreshList(){
@@ -28,10 +29,19 @@ export class MainPage extends Component{
 
     render(){
         const {flows} = this.state;
+        let addModalClose=()=>this.setState({addModalShow:false});
         return(
             <div className="text-center p-3">
-                <Button variant = "success btn-agregar">Agregar</Button>
-                <Button variant = "danger btn-eliminar  ">Eliminar</Button>
+                <Button variant = "success btn-agregar"
+                onClick={()=>this.setState({addModalShow:true})}>
+                Agregar</Button>
+
+                <AddFlowModal show={this.state.addModalShow}
+                onHide={addModalClose}/>
+
+                <Button variant = "danger btn-eliminar">
+                Eliminar</Button>
+                
                 <Table className="mt-4" striped bordered hover size="sm">
                     <thead>
                         <tr>
