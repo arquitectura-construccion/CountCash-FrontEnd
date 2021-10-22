@@ -7,6 +7,10 @@ export class AddFlowModal extends Component{
         this.handleSubmit=this.handleSubmit.bind(this);
     }
     
+    onChange = e =>{
+        this.setState({value : e.target.value});
+    }
+
     handleSubmit(event){
         event.preventDefault();
         fetch(process.env.REACT_APP_API+'flow',{
@@ -32,37 +36,56 @@ export class AddFlowModal extends Component{
     render(){
         return(
             <div className="container">
-                <Modal
-                {...this.props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                >
+                <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header clooseButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Agregar flujo
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Row>
-                            <Col sm={6}>
-                                <Form onSubmit={this.handleSubmit}>
-                                    <Form.Group controlId="FlowName">
-                                        <Form.Label>Descripcion</Form.Label>
-                                        <Form.Control type="text" name="FlowName" required
-                                        placerholder="FlowName"/>
-                                    </Form.Group>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Group className="mb-3" controlId="TipoFlujo">    
+                                <Form.Check
+                                    inline
+                                    label="Gasto"
+                                    name="tipoFlujo"
+                                    type="radio"/>
 
-                                    <Form.Group>
-                                        <Button variant="primary" type="submit">
-                                            Agregar
-                                        </Button>
-                                    </Form.Group>
-                                </Form>
-                            </Col>
-                        </Row>
+                                <Form.Check
+                                    inline
+                                    label="Ingreso"
+                                    name="tipoFlujo"
+                                    type="radio"/>
+                            </Form.Group>
+
+                            <Form.Group as={Row} className="mb-3" controlId="Monto">
+                                <Form.Label column sm={2}>
+                                    Monto:
+                                </Form.Label>
+                                <Col>
+                                    <Form.Control type="text" required placeholder="0.00"/>
+                                </Col>
+                            </Form.Group>
+                                        
+                            <Form.Group className="mb-3" controlId="FlujoDesc">
+                                <Form.Control type="text" name="flowDesc" required placeholder="Descripción"/>
+                            </Form.Group>
+                                        
+                            <Form.Group className="mb-3" controlId="TipoGasto" >
+                                <Form.Label>
+                                    Tipo de Gasto
+                                </Form.Label>
+                                <Form.Select defaultValue="Choose...">
+                                    <option>Choose...</option>
+                                    <option>...</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </Form>
                     </Modal.Body>
                     <Modal.Footer>
+                        <Button variant="primary" type="submit">
+                            Agregar
+                        </Button>
                         <Button variant="danger" onClick={this.props.onHide}>
                             Cancelar
                         </Button>
