@@ -20,8 +20,11 @@ export class AddFlowModal extends Component{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                FlowId:null,
-                FlowName:event.target.FlowName.value
+                ID_FlujoUsuario:null,
+                // Monto:event.target.Monto.value,
+                Descripcion:event.target.Descripcion.value
+                // Flujo:event.target.Flujo.value,
+                // Fecha:event.target.Fecha.value
             })
         })
         .then(res=>res.json())
@@ -29,7 +32,7 @@ export class AddFlowModal extends Component{
             alert(result);
         },
         (error)=>{
-            alert('Failed');
+            alert('No se pudo agregar el flujo.');
         })
     }
 
@@ -44,7 +47,7 @@ export class AddFlowModal extends Component{
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={this.handleSubmit}>
-                            <Form.Group className="mb-3" controlId="TipoFlujo">    
+                            {/* <Form.Group className="mb-3" controlId="TipoFlujo">    
                                 <Form.Check
                                     inline
                                     label="Gasto"
@@ -56,22 +59,22 @@ export class AddFlowModal extends Component{
                                     label="Ingreso"
                                     name="tipoFlujo"
                                     type="radio"/>
-                            </Form.Group>
+                            </Form.Group> */}
 
-                            <Form.Group as={Row} className="mb-3" controlId="Monto">
+                            {/* <Form.Group as={Row} className="mb-3" controlId="Monto">
                                 <Form.Label column sm={2}>
                                     Monto:
                                 </Form.Label>
                                 <Col>
                                     <Form.Control type="text" required placeholder="0.00"/>
                                 </Col>
+                            </Form.Group> */}
+                                        
+                            <Form.Group className="mb-3" controlId="Descripcion">
+                                <Form.Control type="text" name="Descripcion" required placeholder="Descripción"/>
                             </Form.Group>
                                         
-                            <Form.Group className="mb-3" controlId="FlujoDesc">
-                                <Form.Control type="text" name="flowDesc" required placeholder="Descripción"/>
-                            </Form.Group>
-                                        
-                            <Form.Group className="mb-3" controlId="TipoGasto" >
+                            {/* <Form.Group className="mb-3" controlId="TipoGasto" >
                                 <Form.Label>
                                     Tipo de Gasto
                                 </Form.Label>
@@ -79,7 +82,7 @@ export class AddFlowModal extends Component{
                                     <option>Choose...</option>
                                     <option>...</option>
                                 </Form.Select>
-                            </Form.Group>
+                            </Form.Group> */}
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
