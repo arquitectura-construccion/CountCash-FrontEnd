@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './styles.css';
 
+const baseUrl = "https://localhost:5001/api/User/PostUsuario";
 export class SignIn extends Component {
 
     constructor(props) {
@@ -11,7 +12,7 @@ export class SignIn extends Component {
     }
 
     refreshList() {
-        fetch(process.env.REACT_APP_API +'User/PostUsuario')
+        fetch(baseUrl)
             .then(response => response.json())
             .then(data => {
                 this.setState({ user: data })
@@ -28,7 +29,7 @@ export class SignIn extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch(process.env.REACT_APP_API +'User/PostUsuario',{
+        fetch(baseUrl,{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
