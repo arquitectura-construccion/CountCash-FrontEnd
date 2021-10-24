@@ -13,16 +13,16 @@ export class Login extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        fetch(baseUrl,{
+        const data = {
+            nombre: event.target.LoginName.value,
+            contraseña: event.target.LoginPassword.value}
+        fetch(baseUrl + "?Nombre=" + data.nombre + "&Contrase%C3%B1a=" + data.contraseña,{
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json;charset=utf-8'                
+                'Content-Type': 'application/json;charset=utf-8'
             },           
-            body:{                
-                "nombre": "event.target.LoginName.value",
-                "contraseña": "event.target.LoginPassword.value"               
-            },
+            body:undefined,
         })
             .then(res => res.text())
             .then((data) => console.log(data))
