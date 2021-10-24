@@ -1,30 +1,48 @@
 import React,{Component} from "react";
 import {Modal, Button, Row, Col, Form} from 'react-bootstrap';
 
+const baseUrl = "https://localhost:5001/api/FlujoUsuario/PostFlujoUsuario";
 export class AddFlowModal extends Component{
     constructor(props){
         super(props);
+        this.state = { flows: [] };
         this.handleSubmit=this.handleSubmit.bind(this);
     }
     
+    refreshList() {
+        fetch(baseUrl)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ flows: data })
+            });
+    }
+
+    // componentDidMount() {
+    //     this.refreshList();
+    // }
+
+    // componentDidUpdate() {
+    //     this.refreshList();
+    // }
+
     onChange = e =>{
         this.setState({value : e.target.value});
     }
 
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API+'flow',{
+        fetch(baseUrl,{
             method:'POST',
             header:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                ID_FlujoUsuario:null,
-                // Monto:event.target.Monto.value,
-                Descripcion:event.target.Descripcion.value
-                // Flujo:event.target.Flujo.value,
-                // Fecha:event.target.Fecha.value
+                TipoFlujo: event.target.TipoFlujo.value,
+                Monto: event.target.Monto.value,
+                Descripcion: event.target.Descripcion.value,
+                // Flujo: event.target.Flujo.value,
+                TipoMonto: event.target.TipoMonto.value
             })
         })
         .then(res=>res.json())
@@ -37,6 +55,7 @@ export class AddFlowModal extends Component{
     }
 
     render(){
+        const { flow } = this.state;
         return(
             <div className="container">
                 <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter" centered>
@@ -47,7 +66,7 @@ export class AddFlowModal extends Component{
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={this.handleSubmit}>
-                            {/* <Form.Group className="mb-3" controlId="TipoFlujo">    
+                            <Form.Group className="mb-3" controlId="TipoFlujo">    
                                 <Form.Check
                                     inline
                                     label="Gasto"
@@ -59,30 +78,35 @@ export class AddFlowModal extends Component{
                                     label="Ingreso"
                                     name="tipoFlujo"
                                     type="radio"/>
-                            </Form.Group> */}
+                            </Form.Group>
 
-                            {/* <Form.Group as={Row} className="mb-3" controlId="Monto">
+                            <Form.Group as={Row} className="mb-3" controlId="Monto">
                                 <Form.Label column sm={2}>
                                     Monto:
                                 </Form.Label>
                                 <Col>
                                     <Form.Control type="text" required placeholder="0.00"/>
                                 </Col>
-                            </Form.Group> */}
+                            </Form.Group>
                                         
                             <Form.Group className="mb-3" controlId="Descripcion">
                                 <Form.Control type="text" name="Descripcion" required placeholder="Descripción"/>
                             </Form.Group>
                                         
-                            {/* <Form.Group className="mb-3" controlId="TipoGasto" >
+                            <Form.Group className="mb-3" controlId="TipoMonto" >
                                 <Form.Label>
-                                    Tipo de Gasto
+                                    Tipo de Monto
                                 </Form.Label>
                                 <Form.Select defaultValue="Choose...">
-                                    <option>Choose...</option>
-                                    <option>...</option>
+                                    <option>Ropa</option>
+                                    <option>Recreacion</option>
+                                    <option>Educacion</option>
+                                    <option>Vivienda</option>
+                                    <option>Comida</option>
+                                    <option>Transporte y Comunicacion</option>
+                                    <option>Ingreso</option>
                                 </Form.Select>
-                            </Form.Group> */}
+                            </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
