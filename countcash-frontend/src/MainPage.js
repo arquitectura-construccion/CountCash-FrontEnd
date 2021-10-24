@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { Button, Table } from 'react-bootstrap';
+import Cookies from 'universal-cookie';
 import { AddFlowModal } from './AddFlowModal';
 import './styles.css';
 
+var cookies = new Cookies();
 const baseUrl = "https://localhost:5001/api/FlujoUsuario/GetFlujoUsuario";
 export class MainPage extends Component{
 
@@ -13,7 +15,7 @@ export class MainPage extends Component{
 
     refreshList(){
         const data = {
-            UsuarioID: 3}
+            UsuarioID: cookies.get('id')}
         fetch(baseUrl + "?UsuarioID=" + data.UsuarioID, {
             method: "GET",
             headers: {
@@ -39,6 +41,7 @@ export class MainPage extends Component{
     render(){
         const {flows} = this.state;
         let addModalClose=()=>this.setState({addModalShow:false});
+        console.log(cookies.get('id'));
         return(
             <div className="text-center p-3">
                 <Button variant = "success btn-agregar"

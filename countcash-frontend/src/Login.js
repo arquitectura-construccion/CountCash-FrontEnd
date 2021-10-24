@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './styles.css';
+import Cookies from 'universal-cookie';
 
+var cookies = new Cookies();
 const baseUrl = "https://localhost:5001/api/User/GetUsuario";
 export class Login extends Component {
 
@@ -25,6 +27,13 @@ export class Login extends Component {
             body:undefined,
         })
             .then(res => res.text())
+            .then(response=>{
+                if(response.length>0)
+                {
+                    var respuesta=JSON.parse(response);
+                    cookies.set('id', respuesta[0].ID_Usuario, {path: "/login"});
+                    //window.location.href="/mainpage";
+                }})
             .then((data) => console.log(data))
             .catch(error => console.log("Error detected: " + error))                
     }
