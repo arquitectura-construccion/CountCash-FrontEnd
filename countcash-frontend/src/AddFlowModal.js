@@ -9,64 +9,34 @@ export class AddFlowModal extends Component{
         super(props);
         // this.state = { flow: [] };
         this.handleSubmit=this.handleSubmit.bind(this);
-    }
-    
-    // refreshList() {
-    //     fetch(baseUrl)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             this.setState({ flow: data })
-    //         });
-    // }
-
-    // componentDidMount() {
-    //     this.refreshList();
-    // }
-
-    // componentDidUpdate() {
-    //     this.refreshList();
-    // }
-
-    // onChange = e =>{
-    //     this.setState({value : e.target.value});
-    // }
-
-    // handleChange = e =>{
-    //     const { name, value } = e.target;
-    // }
+    }   
 
     handleSubmit(event){
         event.preventDefault();
-        const data={
-            usuarioID: cookies.get("id")
-        }
-        fetch(baseUrl,{
-            method:'POST',
-            header:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body:{
-                usuarioID: data.usuarioID,
-                tipoFlujoID: event.target.TipoFlujoID.value,
+        const requestOptions={    
+            method : 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                usuarioID: cookies.get("id"),
                 monto: event.target.Monto.value,
                 descripcion: event.target.Descripcion.value,
-                // Flujo: event.target.Flujo.value,
+                tipoFlujoID: event.target.TipoFlujoID.value,                                               
                 tipoMontoID: event.target.TipoMontoID.value
-            }
-        })
-        .then(res=>res.json())
-        .then((result)=>{
-            alert(result);
-            console.log(event.target.tipoFlujoID.value)
-        },
-        (error)=>{
-            alert('No se pudo agregar el flujo.');
-        })
+            })
+        };
+        fetch(baseUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState({
+            monto: data.monto,
+            descripcion: data.descripcion,
+            tipoFlujoID: data.tipoFlujoID,
+            tipoMontoID: data.tipoMontoID                    
+        }),
+        alert("Creado.")
+        )        
     }
 
-    render(){
-        // const { flow } = this.state;
+    render(){        
         return(
             <div className="container">
                 <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter" centered>
