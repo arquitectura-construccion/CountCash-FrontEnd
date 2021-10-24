@@ -3,19 +3,28 @@ import { Button, Table } from 'react-bootstrap';
 import { AddFlowModal } from './AddFlowModal';
 import './styles.css';
 
+const baseUrl = "https://localhost:5001/api/FlujoUsuario/GetFlujoUsuario";
 export class MainPage extends Component{
 
     constructor(props){
         super(props);
-        this.state = {flows:[], addModalShow:false}
+        this.state = {flows:[], addModalShow:false};
     }
 
     refreshList(){
-        fetch(process.env.REACT_APP_API+"/FlujoUsuario/GetFlujoUsuario?usuarioID=3")
-            .then(response => response.json())
-            .then(data => { 
-                this.setState({flows:data})
-            });
+        const data = {
+            UsuarioID: 3}
+        fetch(baseUrl + "?UsuarioID=" + data.UsuarioID, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8'
+            },           
+            body:undefined,
+        })
+            .then(res => res.json())
+            .then((data) => {this.setState({flows:data})})
+            .catch(error => console.log("Error detected: " + error));
             
     }
 
@@ -45,12 +54,11 @@ export class MainPage extends Component{
                 <Table className="mt-4" striped bordered hover size="sm">
                     <thead>
                         <tr>
-                            <th>ID_FlujoUsuario</th>
+                            <th>ID Flujo</th>
                             <th>Monto</th>
                             <th>Descripcion</th>
                             <th>Flujo</th>
-                            <th>Gasto</th>
-                            <th>TipoMonto</th>
+                            <th>Categoria</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
@@ -61,7 +69,6 @@ export class MainPage extends Component{
                                 <td>{flow.Monto}</td>
                                 <td>{flow.Descripcion}</td>
                                 <td>{flow.Flujo}</td>
-                                <td>{flow.Gasto}</td>
                                 <td>{flow.TipoMonto}</td>
                                 <td>{flow.Fecha}</td>
                                 <td>Edit / Delete</td>
