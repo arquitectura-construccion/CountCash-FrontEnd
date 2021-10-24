@@ -31,8 +31,8 @@ export class Login extends Component {
                 if(response.length>0)
                 {
                     var respuesta=JSON.parse(response);
-                    cookies.set('id', respuesta[0].ID_Usuario, {path: "/login"});
-                    //window.location.href="/mainpage";
+                    cookies.set('id', respuesta[0].ID_Usuario);
+                    window.location.href="/mainpage";
                 }})
             .then((data) => console.log(data))
             .catch(error => console.log("Error detected: " + error))                

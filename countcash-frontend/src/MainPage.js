@@ -41,7 +41,6 @@ export class MainPage extends Component{
     render(){
         const {flows} = this.state;
         let addModalClose=()=>this.setState({addModalShow:false});
-        console.log(cookies.get('id'));
         return(
             <div className="text-center p-3">
                 <Button variant = "success btn-agregar"
