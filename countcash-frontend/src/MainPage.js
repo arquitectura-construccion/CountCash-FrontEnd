@@ -43,16 +43,12 @@ export class MainPage extends Component{
         let addModalClose=()=>this.setState({addModalShow:false});
         return(
             <div className="text-center p-3">
-                <Button variant = "success btn-agregar"
-                onClick={()=>this.setState({addModalShow:true})}>
-                Agregar</Button>
+                <h2>
+                    A continuacion estan sus flujos:
+                </h2>
 
-                <AddFlowModal show={this.state.addModalShow}
-                onHide={addModalClose}/>
+                <hr></hr>
 
-                <Button variant = "danger btn-eliminar">
-                Eliminar</Button>
-                
                 <Table className="mt-4" striped bordered hover size="sm">
                     <thead>
                         <tr>
@@ -77,6 +73,13 @@ export class MainPage extends Component{
                             </tr>)}
                     </tbody>
                 </Table>
+
+                <Button variant = "success btn-agregar"
+                onClick={()=>this.setState({addModalShow:true})}>
+                Agregar un flujo</Button>
+
+                <AddFlowModal show={this.state.addModalShow}
+                onHide={addModalClose}/>
             </div>      
         );                
     }
