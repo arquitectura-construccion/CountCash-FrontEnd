@@ -28,12 +28,16 @@ export class Login extends Component {
         })
             .then(res => res.text())
             .then(response=>{
-                if(response.length>0)
+                if(response.length>2)
                 {
                     var respuesta=JSON.parse(response);
                     cookies.set('id', respuesta[0].ID_Usuario);
                     window.location.href="/mainpage";
-                }})
+                }
+                else{
+                    alert("Usuario o contraseña no validos");
+                }
+            })
             .then((data) => console.log(data))
             .catch(error => console.log("Error detected: " + error))                
     }
