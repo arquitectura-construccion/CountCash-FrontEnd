@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, ButtonToolbar, Table } from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import { AddFlowModal } from './AddFlowModal';
+import { EditFlowModal } from './EditFlowModal';
 import './styles.css';
 
 var cookies = new Cookies();
@@ -10,7 +11,7 @@ export class MainPage extends Component{
 
     constructor(props){
         super(props);
-        this.state = {flows:[], addModalShow:false};
+        this.state = {flows:[], addModalShow:false,editModalShow:false};
     }
 
     refreshList(){
@@ -39,8 +40,9 @@ export class MainPage extends Component{
     }
 
     render(){
-        const {flows} = this.state;
+        const {flows,flowid,flowmonto,flowdesc} = this.state;
         let addModalClose=()=>this.setState({addModalShow:false});
+        let editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div className="text-center p-3">
                 <h2>
@@ -69,7 +71,21 @@ export class MainPage extends Component{
                                 <td>{flow.Flujo}</td>
                                 <td>{flow.TipoMonto}</td>
                                 <td>{flow.Fecha}</td>
-                                <td>Edit / Delete</td>
+                                <td>
+                                    <ButtonToolbar>
+                                        <Button className="mr-2" variant="info"
+                                        onClick={()=>this.setState({editModalShow:true,
+                                        flowid:flow.ID_FlujoUsuario,flowmonto:flow.Monto,flowdesc:flow.Descripcion})}>
+                                            Edit
+                                        </Button>
+
+                                        <EditFlowModal show={this.state.editModalShow}
+                                        onHide={editModalClose}
+                                        flowid={flowid}
+                                        flowmonto={flowmonto}
+                                        flowdesc={flowdesc}/>
+                                    </ButtonToolbar>
+                                </td>
                             </tr>)}
                     </tbody>
                 </Table>
