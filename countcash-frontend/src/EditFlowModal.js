@@ -17,7 +17,7 @@ export class EditFlowModal extends Component{
             method : 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({    
-                ID_FlujoUsuario : event.target.ID_FlujoUsuario.value,            
+                flujoUsuarioID : event.target.ID_FlujoUsuario.value,            
                 tipoFlujoID: event.target.TipoFlujoID.value,    
                 monto: event.target.Monto.value,
                 descripcion: event.target.Descripcion.value,                                                           
