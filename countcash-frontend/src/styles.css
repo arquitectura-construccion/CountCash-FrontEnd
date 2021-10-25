@@ -1,3 +1,12 @@
+body {
+  background-color: #BDD2B6;
+}
+
+h1 {
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin: 50px auto 50px;
+}
 
 .form-signin {
   width: 100%;
@@ -7,11 +16,11 @@
 }
 
 .btn-sign-up {
-    margin-left: 1450px;
+    margin-right: 50px;
 }
 
 .btn-log-in {
-    margin-left: 1450px;
+    margin-right: 50px;
 }
 
 .App {

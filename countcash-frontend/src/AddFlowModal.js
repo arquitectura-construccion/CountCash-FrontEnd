@@ -94,14 +94,14 @@ export class AddFlowModal extends Component{
 
                             <Form.Group>
                                 <Button variant="success" type="submit">
-                                    Agregar
+                                    Agregar flujo
                                 </Button>
                             </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="danger" onClick={this.props.onHide}>
-                            Cancelar
+                            Salir
                         </Button>
                     </Modal.Footer>
                 </Modal>

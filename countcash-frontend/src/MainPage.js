@@ -58,11 +58,11 @@ export class MainPage extends Component{
         let editModalClose=()=>this.setState({editModalShow:false});
         return(
             <div className="text-center p-3">
-                <h2>
+                <h1>
                     A continuacion estan sus flujos:
-                </h2>
+                </h1>
 
-                <Table className="mt-4" striped bordered hover size="sm">
+                <Table className="mt-4" striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>ID Flujo</th>
@@ -71,6 +71,7 @@ export class MainPage extends Component{
                             <th>Flujo</th>
                             <th>Categoria</th>
                             <th>Fecha</th>
+                            <th/>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,12 +85,12 @@ export class MainPage extends Component{
                                 <td>{flow.Fecha}</td>
                                 <td>
                                     <ButtonToolbar>
-                                        <Button className="mr-2" variant="info"
+                                        <Button className="me-2" variant="info"
                                         onClick={()=>this.setState({editModalShow:true,
                                         flowid:flow.ID_FlujoUsuario,flowmonto:flow.Monto,flowdesc:flow.Descripcion})}>
                                             Edit
                                         </Button>
-                                        <Button className="mr-2" variant="danger"
+                                        <Button className="me-2" variant="danger"
                                         onClick={()=>this.DeleteFlow(flow.ID_FlujoUsuario)}>
                                             Delete
                                         </Button>
