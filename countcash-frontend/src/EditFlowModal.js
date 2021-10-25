@@ -107,7 +107,7 @@ export class EditFlowModal extends Component{
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="danger" onClick={this.props.onHide}>
-                            Cancelar
+                            Salir
                         </Button>
                     </Modal.Footer>
                 </Modal>

@@ -8,6 +8,10 @@ h1 {
   margin: 50px auto 50px;
 }
 
+.modal-backdrop {
+  background-color: #BDD2B6;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
