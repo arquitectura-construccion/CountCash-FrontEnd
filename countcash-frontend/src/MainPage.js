@@ -7,6 +7,7 @@ import './styles.css';
 
 var cookies = new Cookies();
 const baseUrl = "https://localhost:5001/api/FlujoUsuario/GetFlujoUsuario";
+const deleteUrl = "https://localhost:5001/api/FlujoUsuario/DeleteFlujoUsuario"
 export class MainPage extends Component{
 
     constructor(props){
@@ -37,6 +38,18 @@ export class MainPage extends Component{
 
     componentDidUpdate(){
         this.refreshList();
+    }
+    
+    DeleteFlow(flowid){
+        if(window.confirm('Are you sure?')){
+            fetch(deleteUrl+"?flujoUsuarioID="+flowid,{
+                method:'DELETE',
+                header:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                }
+            })
+        }
     }
 
     render(){
@@ -77,6 +90,10 @@ export class MainPage extends Component{
                                         onClick={()=>this.setState({editModalShow:true,
                                         flowid:flow.ID_FlujoUsuario,flowmonto:flow.Monto,flowdesc:flow.Descripcion})}>
                                             Edit
+                                        </Button>
+                                        <Button className="mr-2" variant="danger"
+                                        onClick={()=>this.DeleteFlow(flow.ID_FlujoUsuario)}>
+                                            Delete
                                         </Button>
 
                                         <EditFlowModal show={this.state.editModalShow}
