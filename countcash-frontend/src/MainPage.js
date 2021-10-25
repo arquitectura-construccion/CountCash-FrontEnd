@@ -62,8 +62,6 @@ export class MainPage extends Component{
                     A continuacion estan sus flujos:
                 </h2>
 
-                <hr></hr>
-
                 <Table className="mt-4" striped bordered hover size="sm">
                     <thead>
                         <tr>

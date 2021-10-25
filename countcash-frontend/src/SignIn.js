@@ -43,7 +43,7 @@ export class SignIn extends Component {
         })
             .then(res => res.json())
             .then((result) => {
-                alert(result);
+                alert("Usuario creado.");
             },
                 (error) => {
                     alert("Failed");

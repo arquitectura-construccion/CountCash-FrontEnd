@@ -32,7 +32,7 @@ export class AddFlowModal extends Component{
             tipoFlujoID: data.tipoFlujoID,
             tipoMontoID: data.tipoMontoID                    
         }),
-        alert("Creado.")
+        alert("Flujo agregado.")
         )        
     }
 
